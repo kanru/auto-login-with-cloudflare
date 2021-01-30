@@ -17,43 +17,125 @@
  * Domain Path:        /languages
  */
 
+namespace Wpcfajal;
+
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
 
-function wpcfajal_init()
+require_once 'vendor/php-jwt/src/BeforeValidException.php';
+require_once 'vendor/php-jwt/src/ExpiredException.php';
+require_once 'vendor/php-jwt/src/SignatureInvalidException.php';
+require_once 'vendor/php-jwt/src/JWK.php';
+require_once 'vendor/php-jwt/src/JWT.php';
+
+use Firebase\JWT\JWK;
+use Firebase\JWT\JWT;
+
+define('WP_CF_ACCESS_AUTH_DOMAIN', '');
+define('WP_CF_ACCESS_JWT_AUD', '');
+define('WP_CF_ACCESS_JWT_ALG', ['RS256']);
+define('WP_CF_ACCESS_RETRY', 1);
+
+function refresh_keys()
 {
-    require_once __DIR__ . 'vendor/php-jwt/src/BeforeValidException.php';
-    require_once __DIR__ . 'vendor/php-jwt/src/ExpiredException.php';
-    require_once __DIR__ . 'vendor/php-jwt/src/SignatureInvalidException.php';
-    require_once __DIR__ . 'vendor/php-jwt/src/JWK.php';
-    require_once __DIR__ . 'vendor/php-jwt/src/JWT.php';
-    Wpcfajal\refresh_keys();
+    JWT::$leeway = 60;
+    $keys = null;
+    try {
+        $response = wp_remote_get('https://' . WP_CF_ACCESS_AUTH_DOMAIN . '/cdn-cgi/access/certs');
+        $jwks = json_decode(wp_remote_retrieve_body($response), true);
+        $keys = JWK::parseKeySet($jwks);
+    } catch (Exception $e) {
+        $keys = null;
+    } finally {
+        return $keys;
+    }
 }
 
-function wpcfajal_activation()
+function verify_aud($aud)
 {
-    wpcfajal_init();
+    if (is_array($aud)) {
+        return in_array(WP_CF_ACCESS_JWT_AUD, $aud, true);
+    } elseif (is_string($aud)) {
+        return WP_CF_ACCESS_JWT_AUD == $aud;
+    }
+    return false;
 }
 
-function wpcfajal_deactivation()
+/**
+ * Called for every page after setup theme
+ */
+function login()
 {
+    static $keys = null;
+    if (!isset($keys)) {
+        $keys = refresh_keys();
+    }
 
+    $recognized = false;
+    $user = null;
+    $user_id = 0;
+    $retry_count = 0;
+    $cf_auth_jwt = $_COOKIE["CF_Authorization"];
+
+    if (isset($cf_auth_jwt) && $cf_auth_jwt != "") {
+        while (!$recognized && $retry_count < WP_CF_ACCESS_RETRY) {
+            try {
+                $jwt_decoded = JWT::decode($cf_auth_jwt, $keys, WP_CF_ACCESS_JWT_ALG);
+                if (isset($jwt_decoded->aud) && verify_aud($jwt_decoded->aud)) {
+                    if (isset($jwt_decoded->email)) {
+                        $current_user = wp_get_current_user();
+                        if ($current_user->exists() && $current_user->user_email == $jwt_decoded->email) {
+                            $user = $current_user;
+                            $user_id = $user->id;
+                        } else {
+                            $user = get_user_by('email', $jwt_decoded->email);
+                            $user_id = $user->id;
+                        }
+                        $recognized = true;
+                    }
+                }
+            } catch (\UnexpectedValueException $e) {
+                refresh_keys();
+            }
+            $retry_count++;
+        }
+    }
+
+    if ($recognized) {
+        if ($user_id > 0) {
+            $current_user = wp_get_current_user();
+            if ($user_id != $current_user->id) {
+                wp_set_auth_cookie($user_id);
+                wp_set_current_user($user_id);
+                add_action('init', function () use ($user) {
+                    do_action('wp_login', $user->name, $user);
+                    wp_safe_redirect('/wp-admin');
+                    exit;
+                });
+            }
+        } elseif ($user_id == 0 && is_user_logged_in() && !wp_doing_ajax()) {
+            wp_logout();
+            wp_set_current_user(0);
+        }
+    }
 }
 
-add_action('after_setup_theme', 'wpcfajal_check_login');
-function wpcfajal_check_login()
+function login_redirect()
 {
-    Wpcfajal\check_login();
+    if (wp_safe_redirect(admin_url())) {
+        exit;
+    }
 }
 
-add_action('wp_logout', 'wpcfajal_redirect_to_cf_access_logout');
-function wpcfajal_redirect_to_cf_access_logout()
+function logout_redirect()
 {
-    Wpcfajal\logout();
-    exit();
+    if (wp_safe_redirect('/cdn-cgi/access/logout')) {
+        exit;
+    }
 }
 
-register_activation_hook(__FILE__, 'wpcfajal_activation');
-register_deactivation_hook(__FILE__, 'wpcfajal_deactivation');
+\add_action('plugins_loaded', __NAMESPACE__ . '\\login');
+\add_action('login_form_login', __NAMESPACE__ . '\\login_redirect');
+\add_action('wp_logout', __NAMESPACE__ . '\\logout_redirect');
