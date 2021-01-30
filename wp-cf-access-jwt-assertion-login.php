@@ -37,19 +37,19 @@ define('WP_CF_ACCESS_AUTH_DOMAIN', '');
 define('WP_CF_ACCESS_JWT_AUD', '');
 define('WP_CF_ACCESS_JWT_ALG', ['RS256']);
 define('WP_CF_ACCESS_RETRY', 1);
+define('WP_CF_ACCESS_CACHE_KEY', 'wpcfajal_jwks');
 
 function refresh_keys()
 {
-    JWT::$leeway = 60;
-    $keys = null;
+    $jwks = null;
     try {
         $response = wp_remote_get('https://' . WP_CF_ACCESS_AUTH_DOMAIN . '/cdn-cgi/access/certs');
         $jwks = json_decode(wp_remote_retrieve_body($response), true);
-        $keys = JWK::parseKeySet($jwks);
     } catch (Exception $e) {
-        $keys = null;
+        $jwks = null;
     } finally {
-        return $keys;
+        wp_cache_set(WP_CF_ACCESS_CACHE_KEY, $jwks);
+        return $jwks;
     }
 }
 
@@ -68,9 +68,9 @@ function verify_aud($aud)
  */
 function login()
 {
-    static $keys = null;
-    if (!isset($keys)) {
-        $keys = refresh_keys();
+    $jwks = wp_cache_get(WP_CF_ACCESS_CACHE_KEY);
+    if (!$jwks) {
+        $jwks = refresh_keys();
     }
 
     $recognized = false;
@@ -82,7 +82,8 @@ function login()
     if (isset($cf_auth_jwt) && $cf_auth_jwt != "") {
         while (!$recognized && $retry_count < WP_CF_ACCESS_RETRY) {
             try {
-                $jwt_decoded = JWT::decode($cf_auth_jwt, $keys, WP_CF_ACCESS_JWT_ALG);
+                JWT::$leeway = 60;
+                $jwt_decoded = JWT::decode($cf_auth_jwt, JWK::parseKeySet($jwks), WP_CF_ACCESS_JWT_ALG);
                 if (isset($jwt_decoded->aud) && verify_aud($jwt_decoded->aud)) {
                     if (isset($jwt_decoded->email)) {
                         $current_user = wp_get_current_user();
@@ -97,7 +98,7 @@ function login()
                     }
                 }
             } catch (\UnexpectedValueException $e) {
-                refresh_keys();
+                $jwks = refresh_keys();
             }
             $retry_count++;
         }
