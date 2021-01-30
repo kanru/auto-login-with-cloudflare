@@ -7,7 +7,7 @@
  * @wordpress-plugin
  * Plugin Name:        Cloudflare Access Auto Login
  * Plugin URI:         https://github.com/kanru/wp-cf-access-jwt-assertion-login
- * Description:        Allowa login to Wordpress when using Cloudflare Access.
+ * Description:        Allow login to Wordpress when using Cloudflare Access.
  * Version:            0.9.0
  * Author:             Kan-Ru Chen
  * Author URI:         https://github.com/kanru
@@ -183,14 +183,14 @@ function settings_init()
 
     add_settings_section(
         'wpcfajal_section_general',
-        __('Application settings', 'wpcfajal'),
+        __('Application settings', 'wp-cf-access-jwt-assertion-login'),
         __NAMESPACE__ . '\\section_general_callback',
         'wpcfajal'
     );
 
     add_settings_field(
         'wpcfajal_field_auth_domain',
-        __('Auth domain', 'wpcfajal'),
+        __('Auth domain', 'wp-cf-access-jwt-assertion-login'),
         __NAMESPACE__ . '\\field_auth_domain_cb',
         'wpcfajal',
         'wpcfajal_section_general',
@@ -202,7 +202,7 @@ function settings_init()
 
     add_settings_field(
         'wpcfajal_field_aud',
-        __('Application audience (AUD) tag', 'wpcfajal'),
+        __('Application audience (AUD) tag', 'wp-cf-access-jwt-assertion-login'),
         __NAMESPACE__ . '\\field_aud_cb',
         'wpcfajal',
         'wpcfajal_section_general',
@@ -214,7 +214,7 @@ function settings_init()
 
     add_settings_field(
         'wpcfajal_field_redirect_login_page',
-        __('Redirect login page', 'wpcfajal'),
+        __('Redirect login page', 'wp-cf-access-jwt-assertion-login'),
         __NAMESPACE__ . '\\field_redirect_login_page_cb',
         'wpcfajal',
         'wpcfajal_section_general',
@@ -271,7 +271,7 @@ function field_redirect_login_page_cb($args)
     ?>
     <label for="<?php echo $args['label_for'] ?>">
     <input name="wpcfajal_redirect_login_page" type="checkbox" id="<?php echo $args['label_for'] ?>" <?php echo $redirect_login_page ? "checked" : "" ?> <?php echo $disabled ? "disabled" : "" ?>>
-    <?php echo __('redirect to Cloudflare Access', 'wpcfajal') ?>
+    <?php echo __('redirect to Cloudflare Access', 'wp-cf-access-jwt-assertion-login') ?>
     </label>
     <?php
 }
@@ -279,8 +279,8 @@ function field_redirect_login_page_cb($args)
 function settings_page()
 {
     add_options_page(
-        'Cloudflare Access Auto Login',
-        'Cloudflare Access',
+        __('Cloudflare Access Auto Login', 'wp-cf-access-jwt-assertion-login'),
+        __('Cloudflare Access', 'wp-cf-access-jwt-assertion-login'),
         'manage_options',
         'cloudflare_access_login.php',
         __NAMESPACE__ . '\\settings_page_html'
@@ -292,7 +292,7 @@ add_action('admin_menu', __NAMESPACE__ . '\\settings_page');
 function settings_page_html()
 {
     if (!current_user_can('manage_options')) {
-        wp_die(__('Sorry, you are not allowed to manage options for this site.'));
+        return;
     }
     ?>
     <div class="wrap">
@@ -302,10 +302,16 @@ function settings_page_html()
 
     settings_fields('wpcfajal');
     do_settings_sections('wpcfajal');
-    submit_button('Save Settings');
+    submit_button(__('Save Settings', 'wp-cf-access-jwt-assertion-login'));
 
     ?>
     </form>
     </div>
     <?php
 }
+
+function wpcfajal_load_plugin_textdomain()
+{
+    load_plugin_textdomain('wp-cf-access-jwt-assertion-login', false, basename(dirname(__FILE__)) . '/languages/');
+}
+add_action('plugins_loaded', __NAMESPACE__ . '\\wpcfajal_load_plugin_textdomain');

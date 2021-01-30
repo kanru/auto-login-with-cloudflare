@@ -1,0 +1,66 @@
+# Copyright (C) 2021 Kan-Ru Chen
+# This file is distributed under the same license as the Cloudflare Access Auto Login plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Cloudflare Access Auto Login 0.9.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-cf-access-jwt-"
+"assertion-login\n"
+"POT-Creation-Date: 2021-01-31T01:14:16+09:00\n"
+"PO-Revision-Date: 2021-01-31 00:43+09:00\n"
+"Last-Translator: Kan-Ru Chen <kanru@kanru.info>\n"
+"Language-Team: Kan-Ru Chen <kanru@kanru.info>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: wp-cf-access-jwt-assertion-login\n"
+
+#. Plugin Name of the plugin
+#: wp-cf-access-jwt-assertion-login.php:282
+msgid "Cloudflare Access Auto Login"
+msgstr "Cloudflare Access 自動登入"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/kanru/wp-cf-access-jwt-assertion-login"
+msgstr ""
+
+#. Description of the plugin
+msgid "Allow login to Wordpress when using Cloudflare Access."
+msgstr "讓 Wordpress 可以用 Cloudflare Access 自動登入。"
+
+#. Author of the plugin
+msgid "Kan-Ru Chen"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/kanru"
+msgstr ""
+
+#: wp-cf-access-jwt-assertion-login.php:186
+msgid "Application settings"
+msgstr "應用程式設定"
+
+#: wp-cf-access-jwt-assertion-login.php:193
+msgid "Auth domain"
+msgstr "認證網域"
+
+#: wp-cf-access-jwt-assertion-login.php:205
+msgid "Application audience (AUD) tag"
+msgstr "應用程式代表碼 (AUD)"
+
+#: wp-cf-access-jwt-assertion-login.php:217
+msgid "Redirect login page"
+msgstr "重新導向登入頁"
+
+#: wp-cf-access-jwt-assertion-login.php:274
+msgid "redirect to Cloudflare Access"
+msgstr "自動重新導向登入頁面到 Cloudflare Access"
+
+#: wp-cf-access-jwt-assertion-login.php:283
+msgid "Cloudflare Access"
+msgstr "Cloudflare Access"
+
+#: wp-cf-access-jwt-assertion-login.php:305
+msgid "Save Settings"
+msgstr "儲存設定"
