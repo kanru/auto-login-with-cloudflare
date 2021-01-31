@@ -6,4 +6,4 @@ vendor/php-jwt/README.md
 LICENSE
 readme.txt
 settings.php
-wp-cf-access-jwt-assertion-login.php
+wpcf-access-jwt-assertion-login.php

@@ -1,4 +1,4 @@
-=== WP Cloudflare Access Auto Login ===
+=== Cloudflare Access Auto Login ===
 Contributors: kanru
 Tags: cloudflare,jwt,login
 Donate link: https://www.buymeacoffee.com/kanru
