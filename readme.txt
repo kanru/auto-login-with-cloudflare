@@ -22,6 +22,8 @@ You can also define configs in `wp-config.php`
     define('WP_CF_ACCESS_JWT_AUD', 'examplef2nat0rkar2866wn829a0x2ztdg');
     define('WP_CF_ACCESS_REDIRECT_LOGIN', true);
 
+This plugin is not affiliated with nor developed by Cloudflare. All trademarks, service marks and company names are the property of their respective owners.
+
 == Frequently Asked Questions ==
 
 = How do I redirect the WP login page at `/wp-login.php` to Cloudflare Access? =
