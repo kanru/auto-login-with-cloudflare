@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Cloudflare Access Auto Login 0.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-cf-access-jwt-"
 "assertion-login\n"
-"POT-Creation-Date: 2021-01-31T01:14:16+09:00\n"
+"POT-Creation-Date: 2021-01-31T09:24:58+09:00\n"
 "PO-Revision-Date: 2021-01-31 00:43+09:00\n"
 "Last-Translator: Kan-Ru Chen <kanru@kanru.info>\n"
 "Language-Team: Kan-Ru Chen <kanru@kanru.info>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Domain: wp-cf-access-jwt-assertion-login\n"
 
 #. Plugin Name of the plugin
-#: wp-cf-access-jwt-assertion-login.php:282
+#: settings.php:114
 msgid "Cloudflare Access Auto Login"
 msgstr "Cloudflare Access 自動登入"
 
@@ -37,30 +37,30 @@ msgstr ""
 msgid "https://github.com/kanru"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:186
+#: settings.php:18
 msgid "Application settings"
 msgstr "應用程式設定"
 
-#: wp-cf-access-jwt-assertion-login.php:193
+#: settings.php:25
 msgid "Auth domain"
 msgstr "認證網域"
 
-#: wp-cf-access-jwt-assertion-login.php:205
+#: settings.php:37
 msgid "Application audience (AUD) tag"
 msgstr "應用程式代表碼 (AUD)"
 
-#: wp-cf-access-jwt-assertion-login.php:217
+#: settings.php:49
 msgid "Redirect login page"
 msgstr "重新導向登入頁"
 
-#: wp-cf-access-jwt-assertion-login.php:274
+#: settings.php:106
 msgid "redirect to Cloudflare Access"
 msgstr "自動重新導向登入頁面到 Cloudflare Access"
 
-#: wp-cf-access-jwt-assertion-login.php:283
+#: settings.php:115
 msgid "Cloudflare Access"
 msgstr "Cloudflare Access"
 
-#: wp-cf-access-jwt-assertion-login.php:305
+#: settings.php:136
 msgid "Save Settings"
 msgstr "儲存設定"

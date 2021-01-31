@@ -9,13 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-01-31T01:14:16+09:00\n"
+"POT-Creation-Date: 2021-01-31T09:24:58+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: wp-cf-access-jwt-assertion-login\n"
 
 #. Plugin Name of the plugin
-#: wp-cf-access-jwt-assertion-login.php:282
+#: settings.php:114
 msgid "Cloudflare Access Auto Login"
 msgstr ""
 
@@ -35,30 +35,30 @@ msgstr ""
 msgid "https://github.com/kanru"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:186
+#: settings.php:18
 msgid "Application settings"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:193
+#: settings.php:25
 msgid "Auth domain"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:205
+#: settings.php:37
 msgid "Application audience (AUD) tag"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:217
+#: settings.php:49
 msgid "Redirect login page"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:274
+#: settings.php:106
 msgid "redirect to Cloudflare Access"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:283
+#: settings.php:115
 msgid "Cloudflare Access"
 msgstr ""
 
-#: wp-cf-access-jwt-assertion-login.php:305
+#: settings.php:136
 msgid "Save Settings"
 msgstr ""

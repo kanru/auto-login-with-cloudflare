@@ -29,6 +29,7 @@ require_once 'vendor/php-jwt/src/ExpiredException.php';
 require_once 'vendor/php-jwt/src/SignatureInvalidException.php';
 require_once 'vendor/php-jwt/src/JWK.php';
 require_once 'vendor/php-jwt/src/JWT.php';
+require_once 'settings.php';
 
 use Firebase\JWT\JWK;
 use Firebase\JWT\JWT;
@@ -43,7 +44,7 @@ define('WP_CF_ACCESS_CACHE_KEY', 'wpcfajal_jwks');
 
 function get_auth_domain()
 {
-    if (\defined('WP_CF_ACCESS_AUTH_DOMAIN')) {
+    if (defined('WP_CF_ACCESS_AUTH_DOMAIN')) {
         return WP_CF_ACCESS_AUTH_DOMAIN;
     }
     return get_option('wpcfajal_auth_domain');
@@ -51,7 +52,7 @@ function get_auth_domain()
 
 function get_jwt_aud()
 {
-    if (\defined('WP_CF_ACCESS_JWT_AUD')) {
+    if (defined('WP_CF_ACCESS_JWT_AUD')) {
         return WP_CF_ACCESS_JWT_AUD;
     }
     return get_option('wpcfajal_aud');
@@ -59,7 +60,7 @@ function get_jwt_aud()
 
 function get_redirect_login()
 {
-    if (\defined('WP_CF_ACCESS_REDIRECT_LOGIN')) {
+    if (defined('WP_CF_ACCESS_REDIRECT_LOGIN')) {
         return WP_CF_ACCESS_REDIRECT_LOGIN;
     }
     return get_option('wpcfajal_redirect_login_page');
@@ -171,144 +172,9 @@ function logout_redirect()
     }
 }
 
-\add_action('plugins_loaded', __NAMESPACE__ . '\\login');
-\add_action('login_form_login', __NAMESPACE__ . '\\login_redirect');
-\add_action('wp_logout', __NAMESPACE__ . '\\logout_redirect');
-
-function settings_init()
-{
-    register_setting('wpcfajal', 'wpcfajal_auth_domain');
-    register_setting('wpcfajal', 'wpcfajal_aud');
-    register_setting('wpcfajal', 'wpcfajal_redirect_login_page');
-
-    add_settings_section(
-        'wpcfajal_section_general',
-        __('Application settings', 'wp-cf-access-jwt-assertion-login'),
-        __NAMESPACE__ . '\\section_general_callback',
-        'wpcfajal'
-    );
-
-    add_settings_field(
-        'wpcfajal_field_auth_domain',
-        __('Auth domain', 'wp-cf-access-jwt-assertion-login'),
-        __NAMESPACE__ . '\\field_auth_domain_cb',
-        'wpcfajal',
-        'wpcfajal_section_general',
-        array(
-            'label_for' => 'wpcfajal_field_auth_domain',
-            'class' => 'wpcfajal_row',
-        )
-    );
-
-    add_settings_field(
-        'wpcfajal_field_aud',
-        __('Application audience (AUD) tag', 'wp-cf-access-jwt-assertion-login'),
-        __NAMESPACE__ . '\\field_aud_cb',
-        'wpcfajal',
-        'wpcfajal_section_general',
-        array(
-            'label_for' => 'wpcfajal_field_aud',
-            'class' => 'wpcfajal_row',
-        )
-    );
-
-    add_settings_field(
-        'wpcfajal_field_redirect_login_page',
-        __('Redirect login page', 'wp-cf-access-jwt-assertion-login'),
-        __NAMESPACE__ . '\\field_redirect_login_page_cb',
-        'wpcfajal',
-        'wpcfajal_section_general',
-        array(
-            'label_for' => 'wpcfajal_field_redirect_login_page',
-            'class' => 'wpcfajal_row',
-        )
-    );
-}
-
-add_action('admin_init', __NAMESPACE__ . '\\settings_init');
-
-function section_general_callback($args)
-{
-}
-
-function field_auth_domain_cb($args)
-{
-    if (\defined('WP_CF_ACCESS_AUTH_DOMAIN')) {
-        $auth_domain = WP_CF_ACCESS_AUTH_DOMAIN;
-        $disabled = true;
-    } else {
-        $auth_domain = get_option('wpcfajal_auth_domain');
-        $disabled = false;
-    }
-    ?>
-    <input name="wpcfajal_auth_domain" type="text" id="<?php echo $args['label_for'] ?>" value="<?php echo esc_html_e($auth_domain) ?>" class="regular-text" <?php echo $disabled ? "disabled" : "" ?>>
-    <?php
-}
-
-function field_aud_cb($args)
-{
-    if (\defined('WP_CF_ACCESS_JWT_AUD')) {
-        $aud = WP_CF_ACCESS_JWT_AUD;
-        $disabled = true;
-    } else {
-        $aud = get_option('wpcfajal_aud');
-        $disabled = false;
-    }
-    ?>
-    <input name="wpcfajal_aud" type="text" id="<?php echo $args['label_for'] ?>" value="<?php echo esc_html_e($aud) ?>" class="regular-text" <?php echo $disabled ? "disabled" : "" ?>>
-    <?php
-}
-
-function field_redirect_login_page_cb($args)
-{
-    if (\defined('WP_CF_ACCESS_REDIRECT_LOGIN')) {
-        $redirect_login_page = WP_CF_ACCESS_REDIRECT_LOGIN;
-        $disabled = true;
-    } else {
-        $redirect_login_page = get_option('wpcfajal_redirect_login_page');
-        $disabled = false;
-    }
-    ?>
-    <label for="<?php echo $args['label_for'] ?>">
-    <input name="wpcfajal_redirect_login_page" type="checkbox" id="<?php echo $args['label_for'] ?>" <?php echo $redirect_login_page ? "checked" : "" ?> <?php echo $disabled ? "disabled" : "" ?>>
-    <?php echo __('redirect to Cloudflare Access', 'wp-cf-access-jwt-assertion-login') ?>
-    </label>
-    <?php
-}
-
-function settings_page()
-{
-    add_options_page(
-        __('Cloudflare Access Auto Login', 'wp-cf-access-jwt-assertion-login'),
-        __('Cloudflare Access', 'wp-cf-access-jwt-assertion-login'),
-        'manage_options',
-        'cloudflare_access_login.php',
-        __NAMESPACE__ . '\\settings_page_html'
-    );
-}
-
-add_action('admin_menu', __NAMESPACE__ . '\\settings_page');
-
-function settings_page_html()
-{
-    if (!current_user_can('manage_options')) {
-        return;
-    }
-    ?>
-    <div class="wrap">
-    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-    <form action="options.php" method="post">
-    <?php
-
-    settings_fields('wpcfajal');
-    do_settings_sections('wpcfajal');
-    submit_button(__('Save Settings', 'wp-cf-access-jwt-assertion-login'));
-
-    ?>
-    </form>
-    </div>
-    <?php
-}
+add_action('plugins_loaded', __NAMESPACE__ . '\\login');
+add_action('login_form_login', __NAMESPACE__ . '\\login_redirect');
+add_action('wp_logout', __NAMESPACE__ . '\\logout_redirect');
 
 function wpcfajal_load_plugin_textdomain()
 {
