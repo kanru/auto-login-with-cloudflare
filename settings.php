@@ -114,7 +114,7 @@ function settings_page()
         __('Cloudflare Access Auto Login', 'wp-cf-access-jwt-assertion-login'),
         __('Cloudflare Access', 'wp-cf-access-jwt-assertion-login'),
         'manage_options',
-        'cloudflare_access_login.php',
+        'wpcfajal',
         __NAMESPACE__ . '\\settings_page_html'
     );
 }

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Cloudflare Access Auto Login 0.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-cf-access-jwt-"
 "assertion-login\n"
-"POT-Creation-Date: 2021-01-31T09:24:58+09:00\n"
+"POT-Creation-Date: 2021-01-31T11:31:44+09:00\n"
 "PO-Revision-Date: 2021-01-31 00:43+09:00\n"
 "Last-Translator: Kan-Ru Chen <kanru@kanru.info>\n"
 "Language-Team: Kan-Ru Chen <kanru@kanru.info>\n"
@@ -17,8 +17,7 @@ msgstr ""
 "X-Domain: wp-cf-access-jwt-assertion-login\n"
 
 #. Plugin Name of the plugin
-#: settings.php:114
-msgid "Cloudflare Access Auto Login"
+msgid "WP Cloudflare Access Auto Login"
 msgstr "Cloudflare Access 自動登入"
 
 #. Plugin URI of the plugin
@@ -57,6 +56,10 @@ msgstr "重新導向登入頁"
 msgid "redirect to Cloudflare Access"
 msgstr "自動重新導向登入頁面到 Cloudflare Access"
 
+#: settings.php:114
+msgid "Cloudflare Access Auto Login"
+msgstr "Cloudflare Access 自動登入"
+
 #: settings.php:115
 msgid "Cloudflare Access"
 msgstr "Cloudflare Access"
@@ -64,3 +67,11 @@ msgstr "Cloudflare Access"
 #: settings.php:136
 msgid "Save Settings"
 msgstr "儲存設定"
+
+#: wp-cf-access-jwt-assertion-login.php:187
+msgid "Settings"
+msgstr "設定"
+
+#: wp-cf-access-jwt-assertion-login.php:188
+msgid "Buy me a coffee"
+msgstr "贊助我一杯咖啡"

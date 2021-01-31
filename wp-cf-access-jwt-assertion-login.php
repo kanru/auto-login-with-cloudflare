@@ -5,7 +5,7 @@
  * @package            Wp_Cf_Access_Jwt_Assertion_Login
  *
  * @wordpress-plugin
- * Plugin Name:        Cloudflare Access Auto Login
+ * Plugin Name:        WP Cloudflare Access Auto Login
  * Plugin URI:         https://github.com/kanru/wp-cf-access-jwt-assertion-login
  * Description:        Allow login to Wordpress when using Cloudflare Access.
  * Version:            0.9.0
@@ -181,3 +181,11 @@ function wpcfajal_load_plugin_textdomain()
     load_plugin_textdomain('wp-cf-access-jwt-assertion-login', false, basename(dirname(__FILE__)) . '/languages/');
 }
 add_action('plugins_loaded', __NAMESPACE__ . '\\wpcfajal_load_plugin_textdomain');
+
+function plugin_action_links($actions)
+{
+    $actions[] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=wpcfajal')) . '">' . __('Settings', 'wp-cf-access-jwt-assertion-login') . '</a>';
+    $actions[] = '<a href="https://www.buymeacoffee.com/kanru" target="_blank">' . __('Buy me a coffee', 'wp-cf-access-jwt-assertion-login') . '</a>';
+    return $actions;
+}
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), __NAMESPACE__ . '\\plugin_action_links');
