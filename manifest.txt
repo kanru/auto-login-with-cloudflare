@@ -1,0 +1,8 @@
+languages/
+vendor/php-jwt/src/
+vendor/php-jwt/LICENSE
+vendor/php-jwt/README.md
+LICENSE
+README.md
+settings.php
+wp-cf-access-jwt-assertion-login.php
