@@ -70,7 +70,7 @@ function refresh_keys()
 {
     $jwks = null;
     try {
-        $response = wp_remote_get('https://' . get_auth_domain() . '/cdn-cgi/access/certs');
+        $response = wp_remote_get(esc_url_raw('https://' . get_auth_domain() . '/cdn-cgi/access/certs'));
         $jwks = json_decode(wp_remote_retrieve_body($response), true);
     } catch (Exception $e) {
         $jwks = null;
