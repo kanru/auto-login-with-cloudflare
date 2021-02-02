@@ -15,14 +15,14 @@ function settings_init()
 
     add_settings_section(
         'wpcfajal_section_general',
-        __('Application settings', 'wpcf-access-jwt-assertion-login'),
+        __('Application settings', 'auto-login-with-cloudflare'),
         __NAMESPACE__ . '\\section_general_callback',
         'wpcfajal'
     );
 
     add_settings_field(
         'wpcfajal_field_auth_domain',
-        __('Auth domain', 'wpcf-access-jwt-assertion-login'),
+        __('Auth domain', 'auto-login-with-cloudflare'),
         __NAMESPACE__ . '\\field_auth_domain_cb',
         'wpcfajal',
         'wpcfajal_section_general',
@@ -34,7 +34,7 @@ function settings_init()
 
     add_settings_field(
         'wpcfajal_field_aud',
-        __('Application audience (AUD) tag', 'wpcf-access-jwt-assertion-login'),
+        __('Application audience (AUD) tag', 'auto-login-with-cloudflare'),
         __NAMESPACE__ . '\\field_aud_cb',
         'wpcfajal',
         'wpcfajal_section_general',
@@ -46,7 +46,7 @@ function settings_init()
 
     add_settings_field(
         'wpcfajal_field_redirect_login_page',
-        __('Redirect login page', 'wpcf-access-jwt-assertion-login'),
+        __('Redirect login page', 'auto-login-with-cloudflare'),
         __NAMESPACE__ . '\\field_redirect_login_page_cb',
         'wpcfajal',
         'wpcfajal_section_general',
@@ -103,7 +103,7 @@ function field_redirect_login_page_cb($args)
     ?>
     <label for="<?php echo $args['label_for'] ?>">
     <input name="wpcfajal_redirect_login_page" type="checkbox" id="<?php echo $args['label_for'] ?>" <?php echo $redirect_login_page ? "checked" : "" ?> <?php echo $disabled ? "disabled" : "" ?>>
-    <?php echo __('redirect to Cloudflare Access', 'wpcf-access-jwt-assertion-login') ?>
+    <?php echo __('redirect to Cloudflare Access', 'auto-login-with-cloudflare') ?>
     </label>
     <?php
 }
@@ -111,8 +111,8 @@ function field_redirect_login_page_cb($args)
 function settings_page()
 {
     add_options_page(
-        __('Cloudflare Access Auto Login', 'wpcf-access-jwt-assertion-login'),
-        __('Cloudflare Access', 'wpcf-access-jwt-assertion-login'),
+        __('Auto Login with Cloudflare', 'auto-login-with-cloudflare'),
+        __('Auto Login with Cloudflare', 'auto-login-with-cloudflare'),
         'manage_options',
         'wpcfajal',
         __NAMESPACE__ . '\\settings_page_html'
@@ -133,7 +133,7 @@ function settings_page_html()
 
     settings_fields('wpcfajal');
     do_settings_sections('wpcfajal');
-    submit_button(__('Save Settings', 'wpcf-access-jwt-assertion-login'));
+    submit_button(__('Save Settings', 'auto-login-with-cloudflare'));
 
     ?>
     </form>

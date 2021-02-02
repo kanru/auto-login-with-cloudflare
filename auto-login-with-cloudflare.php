@@ -1,19 +1,19 @@
 <?php
 /**
- * @link               https://github.com/kanru/wpcf-access-jwt-assertion-login
+ * @link               https://github.com/kanru/auto-login-with-cloudflare
  * @since              0.9.0
  * @package            Wpcfajal
  *
  * @wordpress-plugin
- * Plugin Name:        Cloudflare Access Auto Login
- * Plugin URI:         https://github.com/kanru/wpcf-access-jwt-assertion-login
+ * Plugin Name:        Auto Login with Cloudflare
+ * Plugin URI:         https://github.com/kanru/auto-login-with-cloudflare
  * Description:        Allow login to Wordpress when using Cloudflare Access.
  * Version:            0.9.0
  * Author:             Kan-Ru Chen
  * Author URI:         https://github.com/kanru
  * License:            GPL-2.0+
  * License URI:        http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:        wpcf-access-jwt-assertion-login
+ * Text Domain:        auto-login-with-cloudflare
  * Domain Path:        /languages
  */
 
@@ -178,14 +178,14 @@ add_action('wp_logout', __NAMESPACE__ . '\\logout_redirect');
 
 function wpcfajal_load_plugin_textdomain()
 {
-    load_plugin_textdomain('wpcf-access-jwt-assertion-login', false, basename(dirname(__FILE__)) . '/languages/');
+    load_plugin_textdomain('auto-login-with-cloudflare', false, basename(dirname(__FILE__)) . '/languages/');
 }
 add_action('plugins_loaded', __NAMESPACE__ . '\\wpcfajal_load_plugin_textdomain');
 
 function plugin_action_links($actions)
 {
-    $actions[] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=wpcfajal')) . '">' . __('Settings', 'wpcf-access-jwt-assertion-login') . '</a>';
-    $actions[] = '<a href="https://www.buymeacoffee.com/kanru" target="_blank">' . __('Buy me a coffee', 'wpcf-access-jwt-assertion-login') . '</a>';
+    $actions[] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=wpcfajal')) . '">' . __('Settings', 'auto-login-with-cloudflare') . '</a>';
+    $actions[] = '<a href="https://www.buymeacoffee.com/kanru" target="_blank">' . __('Buy me a coffee', 'auto-login-with-cloudflare') . '</a>';
     return $actions;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), __NAMESPACE__ . '\\plugin_action_links');

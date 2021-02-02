@@ -6,4 +6,4 @@ vendor/php-jwt/README.md
 LICENSE
 readme.txt
 settings.php
-wpcf-access-jwt-assertion-login.php
+auto-login-with-cloudflare.php

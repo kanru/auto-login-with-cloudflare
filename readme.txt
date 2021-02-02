@@ -1,4 +1,4 @@
-=== Cloudflare Access Auto Login ===
+=== Auto Login with Cloudflare ===
 Contributors: kanru
 Tags: cloudflare,jwt,login
 Donate link: https://www.buymeacoffee.com/kanru
