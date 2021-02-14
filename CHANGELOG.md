@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.9.1 - 2021-02-14
+
+
+### Miscellaneous Chores
+
+f6a0e9 - update minimum requirements - Kan-Ru Chen
+
+7136b0 - update php-jwt to 5.2.1 - Kan-Ru Chen
+
+
+- - -
 ## 0.9.0 - 2021-02-03
 
 
