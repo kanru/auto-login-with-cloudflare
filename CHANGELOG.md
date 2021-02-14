@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.9.2 - 2021-02-14
+
+
+### Miscellaneous Chores
+
+51af0b - really update versions - Kan-Ru Chen
+
+
+- - -
 ## 0.9.1 - 2021-02-14
 
 
