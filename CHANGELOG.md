@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.9.3 - 2021-03-09
+
+
+### Miscellaneous Chores
+
+9cbce5 - tested with wordpress 5.7 - Kan-Ru Chen
+
+
+- - -
 ## 0.9.2 - 2021-02-14
 
 
