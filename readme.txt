@@ -5,7 +5,7 @@ Donate link: https://www.buymeacoffee.com/kanru
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 5.3
-Stable tag: 0.9.3
+Stable tag: 1.0.0
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
