@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 1.0.0 - 2021-07-10
+
+
+### Miscellaneous Chores
+
+145f52 - Tested with WordPress 5.8 - Kan-Ru Chen
+
+c7aff1 - Update php-jwt to 5.4 - Kan-Ru Chen
+
+
+- - -
 ## 0.9.3 - 2021-03-09
 
 
