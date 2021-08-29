@@ -156,11 +156,11 @@ function login()
             $args = array(
                 'response' => 500,
                 'link_url' => '/cdn-cgi/access/logout',
-                'link_text' => __('Logout the current user.'),
+                'link_text' => __('Logout the current user.', 'auto-login-with-cloudflare'),
                 'exit' => true,
             );
-            $error = __('<strong>Error</strong>: The user does not exist in this site. Please contact the site admin.');
-            wp_die($error, __('User not found'), $args);
+            $error = __('<strong>Error</strong>: The user does not exist in this site. Please contact the site admin.', 'auto-login-with-cloudflare');
+            wp_die($error, __('User not found', 'auto-login-with-cloudflare'), $args);
         }
     }
 }

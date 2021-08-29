@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Auto Login with Cloudflare plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Auto Login with Cloudflare 0.9.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/auto-login-with-cloudflare\n"
+"Project-Id-Version: Auto Login with Cloudflare 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/github\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-02-02T14:25:58+09:00\n"
+"POT-Creation-Date: 2021-08-29T12:10:49+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: auto-login-with-cloudflare\n"
@@ -36,6 +36,26 @@ msgstr ""
 msgid "https://github.com/kanru"
 msgstr ""
 
+#: auto-login-with-cloudflare.php:159
+msgid "Logout the current user."
+msgstr ""
+
+#: auto-login-with-cloudflare.php:162
+msgid "<strong>Error</strong>: The user does not exist in this site. Please contact the site admin."
+msgstr ""
+
+#: auto-login-with-cloudflare.php:163
+msgid "User not found"
+msgstr ""
+
+#: auto-login-with-cloudflare.php:203
+msgid "Settings"
+msgstr ""
+
+#: auto-login-with-cloudflare.php:204
+msgid "Buy me a coffee"
+msgstr ""
+
 #: settings.php:18
 msgid "Application settings"
 msgstr ""
@@ -58,12 +78,4 @@ msgstr ""
 
 #: settings.php:136
 msgid "Save Settings"
-msgstr ""
-
-#: auto-login-with-cloudflare.php:187
-msgid "Settings"
-msgstr ""
-
-#: auto-login-with-cloudflare.php:188
-msgid "Buy me a coffee"
 msgstr ""
