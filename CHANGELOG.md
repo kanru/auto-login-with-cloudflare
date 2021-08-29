@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 1.1.0 - 2021-08-29
+
+
+### Features
+
+093589 - show an error message when user does not exist to prevent redirect loop - Kan-Ru Chen
+
+
+- - -
 ## 1.0.0 - 2021-07-10
 
 
