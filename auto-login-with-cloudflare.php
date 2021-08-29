@@ -150,16 +150,32 @@ function login()
         } elseif ($user_id == 0 && is_user_logged_in() && !wp_doing_ajax()) {
             wp_logout();
             wp_set_current_user(0);
+        } elseif (get_redirect_login()) {
+            // User does not exist. If login page redirection is enabled then
+            // show a error message and exit to prevent redirect loop.
+            $args = array(
+                'response' => 500,
+                'link_url' => '/cdn-cgi/access/logout',
+                'link_text' => __('Logout the current user.'),
+                'exit' => true,
+            );
+            $error = __('<strong>Error</strong>: The user does not exist in this site. Please contact the site admin.');
+            wp_die($error, __('User not found'), $args);
         }
     }
 }
 
+// Redirect /wp-login.php to /wp-admin/
 function login_redirect()
 {
+    // Don't redirect if the plugin is not configured, so that the admin can
+    // login and configure the plugin.
     if (!get_auth_domain() || !get_jwt_aud()) {
         return;
     }
 
+    // If the redirect option is enabled then redirect to /wp-admin/ to trigger
+    // JWT auth.
     if (get_redirect_login() && wp_safe_redirect(admin_url())) {
         exit;
     }
