@@ -5,7 +5,7 @@ Donate link: https://www.buymeacoffee.com/kanru
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 5.3
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -39,7 +39,7 @@ The option assumes that `/wp-admin` folder is protected by Cloudflare Access. If
 
 == Changelog ==
 
-= 1.1.0 =
+= 1.1.1 =
 * Show an error message when user does not exist to prevent redirect loop
 
 = 1.0.0 =

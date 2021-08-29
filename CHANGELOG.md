@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 1.1.1 - 2021-08-29
+
+
+### Bug Fixes
+
+c0cb85 - update languages domain and update pot file - Kan-Ru Chen
+
+
+- - -
 ## 1.1.0 - 2021-08-29
 
 
