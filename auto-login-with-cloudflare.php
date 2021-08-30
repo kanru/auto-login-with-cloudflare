@@ -120,10 +120,10 @@ function login()
                         $current_user = wp_get_current_user();
                         if ($current_user->exists() && $current_user->user_email == $jwt_decoded->email) {
                             $user = $current_user;
-                            $user_id = $user->id;
+                            $user_id = $user->ID;
                         } else {
                             $user = get_user_by('email', $jwt_decoded->email);
-                            $user_id = $user->id;
+                            $user_id = $user->ID;
                         }
                         $recognized = true;
                     }
@@ -138,7 +138,7 @@ function login()
     if ($recognized) {
         if ($user_id > 0) {
             $current_user = wp_get_current_user();
-            if ($user_id != $current_user->id) {
+            if ($user_id != $current_user->ID) {
                 wp_set_auth_cookie($user_id);
                 wp_set_current_user($user_id);
                 add_action('init', function () use ($user) {
