@@ -108,9 +108,9 @@ function login()
     $user = null;
     $user_id = 0;
     $retry_count = 0;
-    $cf_auth_jwt = $_COOKIE["CF_Authorization"];
 
-    if (isset($cf_auth_jwt) && $cf_auth_jwt != "") {
+    if (isset($_COOKIE["CF_Authorization"]) && $_COOKIE["CF_Authorization"] != "") {
+        $cf_auth_jwt = $_COOKIE["CF_Authorization"];
         while (!$recognized && $retry_count < WP_CF_ACCESS_RETRY) {
             try {
                 JWT::$leeway = 60;
