@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 1.1.2 - 2022-01-08
+#### Bug Fixes
+- use absolute include path - (d787b83) - Kan-Ru Chen
+- check CF_Authorization exists before use - (47f68d1) - Kan-Ru Chen
+#### Build system
+- update cog settings - (9af1928) - Kan-Ru Chen
+#### Miscellaneous Chores
+- update version metadata - (8eecdab) - Kan-Ru Chen
+#### Refactoring
+- minor lint warnings clean up - (cef92b4) - Kan-Ru Chen
+- fix some lint warnings - (a3ad62c) - Kan-Ru Chen
+- access user id via WP_User->ID - (a646897) - Kan-Ru Chen
+- - -
+
 ## 1.1.1 - 2021-08-29
 
 
