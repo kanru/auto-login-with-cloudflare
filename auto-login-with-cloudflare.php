@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link               https://github.com/kanru/auto-login-with-cloudflare
  * @since              0.9.0
@@ -45,7 +46,7 @@ define('WP_CF_ACCESS_CACHE_KEY', 'wpcfajal_jwks');
 function get_auth_domain()
 {
     if (defined('WP_CF_ACCESS_AUTH_DOMAIN')) {
-        return WP_CF_ACCESS_AUTH_DOMAIN;
+        return constant('WP_CF_ACCESS_AUTH_DOMAIN');
     }
     return get_option('wpcfajal_auth_domain');
 }
@@ -53,7 +54,7 @@ function get_auth_domain()
 function get_jwt_aud()
 {
     if (defined('WP_CF_ACCESS_JWT_AUD')) {
-        return WP_CF_ACCESS_JWT_AUD;
+        return constant('WP_CF_ACCESS_JWT_AUD');
     }
     return get_option('wpcfajal_aud');
 }
@@ -61,7 +62,7 @@ function get_jwt_aud()
 function get_redirect_login()
 {
     if (defined('WP_CF_ACCESS_REDIRECT_LOGIN')) {
-        return WP_CF_ACCESS_REDIRECT_LOGIN;
+        return constant('WP_CF_ACCESS_REDIRECT_LOGIN');
     }
     return get_option('wpcfajal_redirect_login_page');
 }
@@ -72,7 +73,7 @@ function refresh_keys()
     try {
         $response = wp_remote_get(esc_url_raw('https://' . get_auth_domain() . '/cdn-cgi/access/certs'));
         $jwks = json_decode(wp_remote_retrieve_body($response), true);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         $jwks = null;
     } finally {
         wp_cache_set(WP_CF_ACCESS_CACHE_KEY, $jwks);
