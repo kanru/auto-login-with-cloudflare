@@ -25,12 +25,12 @@ if (!defined('WPINC')) {
     die;
 }
 
-require_once 'vendor/php-jwt/src/BeforeValidException.php';
-require_once 'vendor/php-jwt/src/ExpiredException.php';
-require_once 'vendor/php-jwt/src/SignatureInvalidException.php';
-require_once 'vendor/php-jwt/src/JWK.php';
-require_once 'vendor/php-jwt/src/JWT.php';
-require_once 'settings.php';
+require_once __DIR__ . '/vendor/php-jwt/src/BeforeValidException.php';
+require_once __DIR__ . '/vendor/php-jwt/src/ExpiredException.php';
+require_once __DIR__ . '/vendor/php-jwt/src/SignatureInvalidException.php';
+require_once __DIR__ . '/vendor/php-jwt/src/JWK.php';
+require_once __DIR__ . '/vendor/php-jwt/src/JWT.php';
+require_once __DIR__ . '/settings.php';
 
 use Firebase\JWT\JWK;
 use Firebase\JWT\JWT;
