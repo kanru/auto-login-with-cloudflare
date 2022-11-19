@@ -3,9 +3,9 @@ Contributors: kanru
 Tags: cloudflare,jwt,login
 Donate link: https://www.buymeacoffee.com/kanru
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 6.1.1
 Requires PHP: 5.3
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -38,6 +38,9 @@ The option assumes that `/wp-admin` folder is protected by Cloudflare Access. If
 1. Settings 
 
 == Changelog ==
+
+= 1.1.3 =
+* Tested with WordPress 6.1.1
 
 = 1.1.2 =
 * Tested with WordPress 5.9
