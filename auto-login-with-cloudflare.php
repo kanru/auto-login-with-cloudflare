@@ -9,7 +9,7 @@
  * Plugin Name:        Auto Login with Cloudflare
  * Plugin URI:         https://github.com/kanru/auto-login-with-cloudflare
  * Description:        Allow login to Wordpress when using Cloudflare Access.
- * Version:            1.1.2
+ * Version:            1.1.4
  * Author:             Kan-Ru Chen
  * Author URI:         https://github.com/kanru
  * License:            GPL-2.0+

@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 1.1.4 - 2022-11-19
+#### Buf Fixes
+- fix redirect issue for non-default wp-admin urls #5 - DailyDome
+
+- - -
 ## 1.1.2 - 2022-01-08
 #### Bug Fixes
 - use absolute include path - (d787b83) - Kan-Ru Chen
@@ -14,6 +19,7 @@ All notable changes to this project will be documented in this file. See [conven
 - minor lint warnings clean up - (cef92b4) - Kan-Ru Chen
 - fix some lint warnings - (a3ad62c) - Kan-Ru Chen
 - access user id via WP_User->ID - (a646897) - Kan-Ru Chen
+
 - - -
 
 ## 1.1.1 - 2021-08-29
