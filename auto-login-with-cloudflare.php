@@ -144,7 +144,7 @@ function login()
                 wp_set_current_user($user_id);
                 add_action('init', function () use ($user) {
                     do_action('wp_login', $user->name, $user);
-                    wp_safe_redirect('/wp-admin');
+                    wp_safe_redirect(admin_url());
                     exit;
                 });
             }
